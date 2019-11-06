@@ -1,7 +1,5 @@
 'use strict'
 
-const DEBUG = process.env.DEBUG === 'hafas-client'
-
 const defaultRestProfile = require('./lib/default-rest-profile')
 const validateProfile = require('./lib/validate-profile')
 
@@ -16,10 +14,6 @@ const createRestClient = (profile, token, userAgent) => {
 	if (!isNonEmptyString(profile.endpoint)) throw new Error('missing profile.endpoint')
 	if (!isNonEmptyString(token)) throw new Error('missing token')
 	if (!isNonEmptyString(userAgent)) throw new Error('missing userAgent')
-
-	const request = async (method, opt, query = {}) => {
-		// todo
-	}
 
 	const client = {
 	}
