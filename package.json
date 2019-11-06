@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"files": [
 		"rest-exe.js",
+		"rest-exe-example.js",
 		"index.js",
 		"throttle.js",
 		"retry.js",
