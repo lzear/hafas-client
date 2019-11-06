@@ -58,4 +58,22 @@ const parseLocation = (ctx, l) => {
 	return res
 }
 
-module.exports = parseLocation
+const parseLocationsResult = (ctx, l) => {
+	const {profile} = ctx
+	if (l.StopLocation) {
+		return profile.parseLocation(ctx, {
+			type: 'ST', ...l.StopLocation,
+		})
+	}
+	if (l.CoordLocation) {
+		return profile.parseLocation(ctx, {
+			type: 'ADR', ...l.CoordLocation,
+		})
+	}
+	return null
+}
+
+module.exports = {
+	parseLocation,
+	parseLocationsResult,
+}
