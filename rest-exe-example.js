@@ -13,6 +13,9 @@ const {
 	locations, nearby,
 	departures, arrivals,
 	journeys, trip, tripAlternatives
+	// tripHistory,
+	// radar,
+	// remarks, dataInfo
 } = createClient(profile, TOKEN, 'hafas-client example')
 
 const berlinOstkreuz = '8011162'
