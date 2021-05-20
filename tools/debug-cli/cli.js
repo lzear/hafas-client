@@ -3,12 +3,15 @@
 
 const mri = require('mri')
 const {join} = require('path')
-const createClient = require('../..')
+const createRestClient = require('../../rest-exe')
 
 const showError = (err) => {
 	console.error(err)
 	process.exit(1)
 }
+
+const token = process.env.TOKEN
+if (!token) showError('Missing TOKEN env var.')
 
 const toString = val => val + ''
 const parseJsObject = val => {
@@ -54,7 +57,7 @@ const parseArgs = [
 const argv = mri(process.argv.slice(2))
 
 const profile = require(join('../../p', argv._[0]))
-const client = createClient(profile, 'hafas-client debug CLI')
+const client = createRestClient(profile, token, 'hafas-client debug CLI')
 
 const fnName = argv._[1]
 const fn = client[fnName]
