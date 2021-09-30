@@ -26,12 +26,16 @@ const parseLocation = (ctx, l) => {
 	// todo: l.notes https://github.com/public-transport/hafas-client/issues/130
 
 	if (l.type === 'S' || l.type === 'ST' || id.A === '1') {
+		// todo: l.altId, l.mainMastAltId
+
 		const stop = {
 			type: 'stop',
 			id: res.id,
 			name: l.name || id.O ? profile.parseStationName(ctx, l.name || id.O) : null,
 			location: 'number' === typeof res.latitude ? res : null
 		}
+
+		if ('products' in l) stop.products = profile.parseProductsBitmask(ctx, l.products)
 
 		if (opt.linesOfStops && Array.isArray(l.productAtStop)) {
 			stop.lines = l.productAtStop.map(p => profile.parseLine(ctx, {
@@ -46,6 +50,8 @@ const parseLocation = (ctx, l) => {
 				extId: l.mainMastExtId
 			})
 			stop.station.type = 'station'
+		} else {
+			stop.type = 'station'
 		}
 
 		return stop
