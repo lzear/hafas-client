@@ -58,6 +58,14 @@ const parseArgs = [
 	['subscription', 0, toString],
 	['subscription', 1, toString],
 	['subscription', 2, parseJsObject],
+	// subscribeToJourney(userId, channelIds, journeyRefreshToken, opt = {})
+	['subscribeToJourney', 0, toString],
+	['subscribeToJourney', 1, parseJsObject],
+	['subscribeToJourney', 2, toString],
+	['subscribeToJourney', 3, parseJsObject],
+	// unsubscribe(userId, subscriptionId)
+	['unsubscribe', 0, toString],
+	['unsubscribe', 1, toString],
 ]
 
 const argv = mri(process.argv.slice(2))
