@@ -2,11 +2,19 @@
 
 const {gunzipSync} = require('zlib')
 
-const parseSubscription = (ctx, id, s) => {
+const parseSubscription = (ctx, _) => {
 	const {profile, opt} = ctx
+	const s = _.conSubscr
 
 	const res = {
-		id,
+		id: _.subscrId,
+		status: _.status,
+		// todo: _.channels
+
+		// todo: parse & give a proper name
+		rtEvents: _.eventHistory && _.eventHistory.rtEvents || [],
+		himEvents: _.eventHistory && _.eventHistory.himEvents || [],
+
 		hysteresis: s.hysteresis,
 		monitorFlags: s.monitorFlags,
 		connectionInfo: s.connectionInfo,
