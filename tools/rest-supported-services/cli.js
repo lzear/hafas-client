@@ -173,7 +173,7 @@ const checkIfServiceIsSupported = async (service) => {
 	// 	wrapped.originalError = err
 	// 	throw wrapped
 	// }
-	// return true
+	return true
 }
 
 ;(async () => {
