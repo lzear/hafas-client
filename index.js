@@ -596,11 +596,11 @@ const createClient = (profile, userAgent, opt = {}) => {
 			results: 256, // maximum number of vehicles
 			duration: 30, // compute frames for the next n seconds
 			// todo: what happens with `frames: 0`?
-			frames: 3, // nr of frames to compute
-			products: null, // optionally an object of booleans
-			polylines: true, // return a track shape for each vehicle?
-			subStops: true, // parse & expose sub-stops of stations?
-			entrances: true, // parse & expose entrances of stops/stations?
+			frames: opt.frames || 3, // nr of frames to compute
+			products: opt.products || null, // optionally an object of booleans
+			polylines: false, // return a track shape for each vehicle?
+			subStops: false, // parse & expose sub-stops of stations?
+			entrances: false, // parse & expose entrances of stops/stations?
 		}, opt || {})
 		opt.when = new Date(opt.when || Date.now())
 		if (Number.isNaN(+opt.when)) throw new TypeError('opt.when is invalid')
@@ -609,12 +609,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 
 		// todo [breaking]: return object with realtimeDataUpdatedAt
 		return profile.request({profile, opt}, userAgent, req)
-		.then(({res, common}) => {
-			if (!Array.isArray(res.jnyL)) return []
-
-			const ctx = {profile, opt, common, res}
-			return res.jnyL.map(m => profile.parseMovement(ctx, m))
-		})
+			.then(({ res }) => res)
 	}
 
 	const reachableFrom = (address, opt = {}) => {

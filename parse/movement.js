@@ -28,6 +28,7 @@ const parseMovement = (ctx, m) => { // m = raw movement
 	}
 
 	if (m.ani) {
+		res.ani = m.ani
 		// todo: ani.dirGeo, ani.fLocX, ani.proc, ani.procAbs, ani.state, ani.stcOutputX
 
 		if (Array.isArray(m.ani.mSec)) {
