@@ -41,7 +41,7 @@ In many aspects, the API looks and feels like [RPCs](https://en.wikipedia.org/wi
 		{
 			"meth": "…", // name of the API call, supported values depend on the endpoint
 			"req": {
-				// actual request parameters…
+				// actual request UrlParameter…
 			}
 			// some endpoints also require this:
 			"cfg": {
@@ -76,7 +76,7 @@ You can just query these, as long as you send a formally correct request.
 
 This secret can be read from the config file inside the accompanying client app. There is no guide for this yet, so please [open an issue](https://github.com/public-transport/hafas-client/issues/new).
 
-### endpoints using the `mic` & `mac` query parameters
+### endpoints using the `mic` & `mac` query UrlParameter
 
 `mic` is a [message integrity code](https://en.wikipedia.org/wiki/Message_authentication_code), the [hash](https://en.wikipedia.org/wiki/Hash_function) of the request body.
 
